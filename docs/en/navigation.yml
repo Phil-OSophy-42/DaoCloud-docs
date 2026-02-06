@@ -10,6 +10,9 @@ nav:
               - Use Cases: dce/scenario.md
               - DaoCloud is a KCSP: dce/kcsp.md
               - Release Notes:
+                  - v0.37.0-20251231 Released: dce/dce-rn/20251231.md
+                  - v0.36.0-20251130 Released: dce/dce-rn/20251130.md
+                  - v0.35.0-20251031 Released: dce/dce-rn/20251031.md
                   - v0.34.0-20250930 Released: dce/dce-rn/20250930.md
                   - v0.33.0-20250831 Released: dce/dce-rn/20250831.md
                   - v0.32.0-20250731 Released: dce/dce-rn/20250731.md
@@ -223,15 +226,17 @@ nav:
                   - FAQs: kpanda/intro/faq.md
               - Clusters:
                   - Create Cluster: kpanda/user-guide/clusters/create-cluster.md
-                  - Integrate Cluster: kpanda/user-guide/clusters/integrate-cluster.md
-                  - Access Cluster: kpanda/user-guide/clusters/access-cluster.md
+                  - Integrate/Scale/Delete Clusters:
+                      - Integrate Cluster: kpanda/user-guide/clusters/integrate-cluster.md
+                      - Integrate Rancher Cluster: kpanda/user-guide/clusters/integrate-rancher-cluster.md
+                      - Scale Worker Nodes of Global Service Cluster: kpanda/best-practice/add-worker-node-on-global.md
+                      - Access Cluster: kpanda/user-guide/clusters/access-cluster.md
+                      - Delete Cluster: kpanda/user-guide/clusters/delete-cluster.md
                   - Upgrade Cluster: kpanda/user-guide/clusters/upgrade-cluster.md
-                  - Delete Cluster: kpanda/user-guide/clusters/delete-cluster.md
                   - Cluster Roles: kpanda/user-guide/clusters/cluster-role.md
                   - Cluster Status: kpanda/user-guide/clusters/cluster-status.md
                   - Choose Runtime: kpanda/user-guide/clusters/runtime.md
                   - Cluster Versions: kpanda/user-guide/clusters/cluster-version.md
-                  - Integrate Rancher Cluster: kpanda/user-guide/clusters/integrate-rancher-cluster.md
                   - Deploy 2nd Scheduler in a Cluster: kpanda/user-guide/clusters/cluster-scheduler-plugin.md
                   - Renew Cluster Cert: kpanda/user-guide/clusters/k8s-cert.md
               - Namespaces:
@@ -511,7 +516,7 @@ nav:
                   - CoreDNS Performance Test: network/performance/coredns-performance.md
               - Spiderpool:
                   - Intro: network/modules/spiderpool/index.md
-                  - Release Notes: network/modules/spiderpool/release-notes/
+                  - Release Notes: network/modules/spiderpool/release-notes.md
                   - Install: 
                       - Install Spiderpool: network/modules/spiderpool/install/install.md
                       - Prepare and install RDMA: network/modules/spiderpool/install/rdmapara.md
@@ -519,6 +524,7 @@ nav:
                   - Upgrade: network/modules/spiderpool/upgrade.md
                   - Config: network/modules/spiderpool/config.md
                   - Commands: network/modules/spiderpool/command.md
+                  - RDMA Dashboard: network/modules/spiderpool/rdma-dashboard.md           
                   - Public Cloud:
                       - Running on Alibaba Cloud: network/modules/spiderpool/public-cloud/alibabacloud.md
                       - Running on AWS: network/modules/spiderpool/public-cloud/awscloud.md
@@ -824,6 +830,7 @@ nav:
                   - Use Cases: skoala/intro/scenarios.md
                   - Competitiveness: skoala/intro/advantages.md
                   - Microservices Release Notes: skoala/intro/release-notes.md
+                  - Upgrade Notes: skoala/intro/upgrade-notes.md
               - Quick Start:
                   - Management Components: skoala/quickstart/skoala.md
                   - Cluster Init Components: skoala/quickstart/skoala-init.md
@@ -1206,6 +1213,7 @@ nav:
                   - Use with Cherry Studio: hydra/user-guides/cherry-studio.md
                   - Use with Bob Translate: hydra/user-guides/bob-translate.md
                   - Use with LobeChat: hydra/user-guides/lobe-chat.md
+                  - Custom LLM Inference Runtime: hydra/user-guides/custom-runtime.md
           - AI Lab:
               - Introduction:
                   - What is AI Lab: baize/intro/index.md
@@ -1487,8 +1495,14 @@ nav:
                   - Operation Management: download/modules/gmagpie.md
   - Blogs:
       - Index: blogs/index.md
+      - 2026:
+          - Topology-Aware Scheduling: blogs/2026/topology-aware-scheduling.md
+          - Kubernetes x JobSet: blogs/2026/jobset-ai-restart.md
       - 2025:
+          - DCE Passed CNCF Kubernetes AI Conformance: blogs/2025/ai-conformance.md
+          - Paco Xu Elected to the Kubernetes Steering Committee: blogs/2025/paco-ksc.md
           - Spotlight on the K8s Steering Committee: blogs/2025/k8s-steering-spotlight.md
+          - Open Source Documentation: blogs/2025/open-source-doc.md
       - 2024:
           - From Community Novice to CNCF Ambassador: blogs/2024/241108-cncf-ambassador.md
           - containerd v2.0, nerdctl v2.0, and Lima v1.0: blogs/2024/241106-containerd-nerdctl-lima.md

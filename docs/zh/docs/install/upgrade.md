@@ -19,7 +19,7 @@ DCE 5.0 组件的升级包含升级 DCE 5.0 产品功能模块、升级 DCE 5.0 
 
 ## 离线升级操作步骤
 
-本次操作步骤演示如何从 v0.20.0 升级到 v0.21.0。目
+本次操作步骤演示如何从 v0.20.0 升级到 v0.21.0。
 
 ### 第 1 步：下载 DCE 5.0 离线包
 
@@ -28,8 +28,8 @@ DCE 5.0 组件的升级包含升级 DCE 5.0 产品功能模块、升级 DCE 5.0 
 
 | CPU 架构 | 版本   | 下载地址 |
 | :------- | :---- | :----- |
-| AMD64    | v0.21.0 | https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.21.0-amd64.tar |
-| ARM64    | v0.21.0 | https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.21.0-arm64.tar |
+| AMD64    | v0.21.0 | https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.21.0-amd64.tar |
+| ARM64    | v0.21.0 | https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.21.0-arm64.tar |
 
 下载完毕后解压离线包，以 AMD64 架构离线包为例：
 
@@ -114,10 +114,6 @@ DCE 5.0 基础设施模块的组件特指 [manifest.yaml](commercial/manifest.md
       version: v0.10.4
       policy: drbd-disabled
 ```
-
-!!! note
-
-    目前仅支持对当前环境中已经安装的产品组件进行升级，不存在的组件将会跳过升级步骤。
 
 ### 第 4 步：开始升级
 

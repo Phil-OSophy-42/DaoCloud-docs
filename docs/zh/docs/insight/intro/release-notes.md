@@ -1,6 +1,123 @@
 # Insight Release Notes
 
-本页列出 Insight 可观测性的 Release Notes，便于您了解各版本的演进路径和特性变化。
+本页列出 Insight 可观测性的 Release Notes，便于您了解各版本的演进路径和特性变化，[升级注意事项](../quickstart/install/upgrade-note.md)。
+
+## 2025-11-30
+
+### v0.39.2
+
+#### Insight Server
+
+#### Insight Agent
+- **修复** `apiserver` ServiceMonitor 丢失 `apiserver_request_terminations_total` 指标的问题
+- **修复** Kubernetes 1.18.x 下 DCE4 对 `kube-state-metrics` 的适配问题
+- **修复** 内置 recording rules 不再依赖 `kube_(.*)_labels` 指标
+
+## 2025-10-31
+
+### v0.39.0
+
+#### Insight Server
+
+- **新增** HwameiStor 内置告警规则
+- **新增** FormatQuery API
+- **新增** Skoala 网关访问日志的 Grafana 数据源
+- **新增** 节点级 Pod 资源仪表盘
+- **新增** PrometheusRemoteWriteLost 告警规则说明（Prometheus 远程写入连接丢失）
+- **新增** vmrule 的规则 `labels` 和 `annotations` 校验功能
+- **新增** Alertmanager 内置模板函数
+- **新增** Alert Preview API 响应中添加 PromQL 字段
+- **新增** 预览通知模板的 API
+- **新增** 支持模板访问 Alertmanager webhook 的完整数据
+- **修复** 导出字段功能不生效
+- **修复** `parseNotifyTemplate` 函数导致的 nil panic
+- **修复** FormatQuery API 的 bug
+- **修复** kube controller 告警表达式 bug
+- **修复** 创建 VMAlertmanagerConfig 时 `"xxxx" is invalid "spec.route" Required value` 错误
+- **修复** 使用 ident filter 查询日志时，存在不同日志路径的 ident 日志无法查询问题
+- **优化** Elasticsearch 连接日志中显示 ES 地址
+- **优化** OTel aggregator 使用 OTelhttp 发送指标
+- **优化** 默认启用 opentelemetry-collector-aggregator
+- **升级** elastic alert 版本至 1.24
+- **升级** Golang 版本至 1.23
+
+#### Insight Agent
+
+- **修复** config-reloader 镜像从 `jimmidyson/configmap-reload:v0.13.0` 改为 `victoriametrics/operator:config-reloader-v0.62.0`
+- **优化** 移除未使用指标的 node-exporter collector job
+- **升级** runbook 镜像中 nginx 从 1.26.2-alpine 升级到 1.29.2-alpine
+- **升级** kube-state-metrics 镜像至 v2.16.0，支持 Kubernetes 1.25+
+- **升级** kube-state-metrics 镜像从 v2.6.0 升级至 v2.16.0，支持 Kubernetes 1.22~1.24
+- **升级** kube-state-metrics chart 从 v5.4.2 升级到 v6.3.0
+- **升级** OTel operator chart 从 0.91.1（OTel operator v0.127.0）升级至 0.95.1（OTel operator v0.135.0）
+- **升级** OTel collector chart 从 0.129.0 升级至 0.134.0
+- **升级** OTel Java instrumentation 从 2.17.1 升级至 2.20.0
+- **升级** OTel Node.js instrumentation 从 0.62.0 升级至 0.64.1
+- **升级** OTel Python instrumentation 从 0.56b0 升级至 0.58b0
+- **升级** OTel Go instrumentation 从 v0.22.1 升级至 v0.23.0
+- **升级** jaeger v2 从 2.9.1 升级至 2.10.0
+- **升级** victoria-metrics-k8s-stack 从 0.14.19 升级至 0.61.12
+- **升级** victoriametrics/operator 从 0.48.3 升级至 0.63.0
+- **升级** victoriametrics/vmselect 从 1.103.0 升级至 1.127.0
+- **升级** victoriametrics/vmstorage 从 1.103.0 升级至 1.127.0
+- **升级** victoriametrics/vminsert 从 1.103.0 升级至 1.127.0
+- **升级** victoriametrics/vmalert 从 1.93.5 升级至 1.127.0
+
+## 2025-09-30
+
+### v0.38.2
+
+#### Insight Server
+
+- **优化** AlertGroup 名称校验
+
+#### Insight Agent
+
+- **修复** 事件采集器解析事件数据的 bug
+- **修复** Hyper-Threading 模式下 License 统计中 CPU 数量重复问题
+
+## 2025-08-31
+
+### v0.38.1
+
+#### Insight Server
+
+- **新增** insight-server 内置 es、database、vmselect 的 vmalert 规则  
+- **新增** 告警支持 target_type 为命名空间  
+- **修复** 调整 Prometheus CR 默认的采集间隔和评估间隔为 1m  
+- **修复** 告警名称校验逻辑  
+- **修复** 消费审计日志的错误  
+- **修复** agentinstallparam API 中 trace 输出字段丢失的问题  
+- **修复** 跟随 Jaeger UI 逻辑的 trace 时长计算问题  
+- **修复** 移除未使用的 apiserver 和 ksm 指标  
+- **优化** 更新 insight chart 中的 smon cr  
+- **优化** 支持安全连接 Kafka  
+- **优化** otelcol 仅通过事件发送到 es/kafka  
+- **优化** 更新默认的 insight-agent spanmetrics 配置（与 server 协同）  
+- **优化** 升级 etcd-exporter 从 v0.7.0 到 v0.8.0  
+- **优化** 升级 Jaeger 至 v2  
+- **优化** 升级 jaeger-v2 至 jaeger-2.9.1-6ede7f9f 
+
+#### Insight Agent
+
+- **新增** insight-agent Chart 支持 Jaeger 远程采样服务器  
+- **新增** 在写入 Elasticsearch 时增加 kafka_record_metadata 字段  
+- **新增** 日志下载支持排序与 MaxLogCount 限制  
+- **新增** 在 insight-tracing-debug.json 中增加热力图展示  
+- **修复** grafana-operator 日志等级配置问题  
+- **修复** Grafana 侧边栏显示问题  
+- **修复** otel event collector 选主问题  
+- **修复** spanmetrics 时间戳重复采样问题  
+- **修复** es-init 在重启时覆盖配置的问题  
+- **修复** Fluentbit 的 add_time.lua 纳秒精度问题  
+- **修复** vmalert 列表与监听所有命名空间的规则问题  
+- **修复** 关闭 vector headless 避免指标重复采集  
+- **优化** 升级 otel stack  
+- **优化** 升级 Fluentbit  
+- **优化** 启用 otel event collector 选主功能  
+- **优化** 升级 tailing-sidecar-operator 从 0.15.0 到 0.18.0  
+- **优化** 升级 grafana-operator 从 v4.5.0 到 v4.5.1  
+- **优化** 升级 Fluentbit/XC 从 v4.0.1 到 v4.0.7  
 
 ## 2025-06-30
 

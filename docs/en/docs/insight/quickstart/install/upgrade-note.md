@@ -5,24 +5,45 @@ Date: 2024-09-24
 
 # Upgrade Notes
 
-This page provides some considerations for upgrading insight-server and insight-agent.
+This page provides some considerations for upgrading insight and insight-agent chart.
 
-## insight-agent
+## insight
 
-### Upgrade from v0.28.x (or lower) to v0.29.x
+### Upgrade from v0.39.x (or lower) to v0.40.x or higher
 
-Due to the upgrade of the Opentelemetry community operator chart version in v0.29.0, the supported values for `featureGates` in the values file have changed. Therefore, before upgrading, you need to set the value of `featureGates` to empty, as follows:
+#### Upgrade grafana operator
 
-```diff
--  --set opentelemetry-operator.manager.featureGates="+operator.autoinstrumentation.go,+operator.autoinstrumentation.multi-instrumentation,+operator.autoinstrumentation.nginx" \
-+  --set opentelemetry-operator.manager.featureGates=""
+In version v0.40.0, the Grafana Operator will be upgraded from v4 to v5, introducing significant CRD((v1alpha1 -> v1beta1)) changes. 
+The upgrade process will be automatically completed by `helm upgrade`.
+
+If users need to perform a `helm rollback` to a previous version (e.g., from v0.40.0 to v0.39.0), 
+they must manually clean up the v5 Custom Resources (CRs) using the following commands:
+```shell
+kubectl delete grafanas.grafana.integreatly.org -n insight-system --selector operator.insight.io/managed-by=insight --ignore-not-found=true
+kubectl delete grafanadashboards.grafana.integreatly.org -n insight-system --selector operator.insight.io/managed-by=insight --ignore-not-found=true
+kubectl delete grafanadatasources.grafana.integreatly.org -n insight-system --selector operator.insight.io/managed-by=insight --ignore-not-found=true
 ```
+These commands only clean up CRs in the `insight-system` namespace. CRs in other namespaces can be removed using the same approach.
 
-## insight-server
+The Grafana Deployment in v0.40.x will include a [dashboard-discover](https://github.com/openinsight-proj/dashboard-discover) sidecar, 
+which is used to load GrafanaDashboard(v1alpha1) resources and ConfigMaps into the directory specified by the Grafana dashboard provider (/var/lib/grafana/plugins/dashboards). 
+Please refer to [Import Custom Dashboards](../../user-guide/dashboard/import-dashboard.md).
+
+#### Upgrade grafana
+
+In version v0.40.0, Grafana has been upgraded from 9.3.14 to 12.1.3. Grafana 12.1.3 has completely removed support for
+AngularJS and prioritized React instead. For details, refer to the [community announcement](https://grafana.com/blog/2025/04/03/angularjs-support-will-be-removed-in-grafana-12-what-you-need-to-know).
+If you run into issues while using the dashboard, please refer to [Import Custom Dashboards](../../user-guide/dashboard/import-dashboard.md#notice).
+
+### Upgrade from v0.37.x (or lower) to v0.38.x
+
+In version v0.38.x of insight, Jaeger has been upgraded from v1 to v2, with corresponding adjustments to the deployment architecture.
+The jaeger Collector has now been deprecated, and its functionalities have been merged into the Global Opentelemetry Collector as a plugin.
+When upgrading insight, you need to specify `--set jaeger.collector.enabled=false`.
 
 ### Upgrade from v0.26.x (or lower) to v0.27.x or higher
 
-In v0.27.x, the switch for the vector component has been separated. If the existing environment has vector enabled, you need to specify `--set vector.enabled=true` when upgrading the insight-server.
+In v0.27.x, the switch for the vector component has been separated. If the existing environment has vector enabled, you need to specify `--set vector.enabled=true` when upgrading the insight.
 
 ### Upgrade from v0.19.x (or lower) to 0.20.x
 
@@ -37,14 +58,14 @@ kubectl -n insight-system delete deployment insight-jaeger-query
 ### Upgrade from v0.17.x (or lower) to v0.18.x
 
 In v0.18.x, there have been updates to the Jaeger-related deployment files,
-so you need to manually run the following commands before upgrading insight-server:
+so you need to manually run the following commands before upgrading insight:
 
 ```bash
 kubectl -n insight-system delete deployment insight-jaeger-collector
 kubectl -n insight-system delete deployment insight-jaeger-query
 ```
 
-There have been changes to metric names in v0.18.x, so after upgrading insight-server,
+There have been changes to metric names in v0.18.x, so after upgrading insight,
 insight-agent should also be upgraded.
 
 In addition, the parameters for enabling the tracing module and adjusting the ElasticSearch connection
@@ -69,7 +90,7 @@ have been modified. Refer to the following parameters:
 ### Upgrade from v0.15.x (or lower) to v0.16.x
 
 In v0.16.x, a new feature parameter `disableRouteContinueEnforce` in the `vmalertmanagers CRD`
-is used. Therefore, you need to manually run the following command before upgrading insight-server:
+is used. Therefore, you need to manually run the following command before upgrading insight:
 
 ```shell
 kubectl apply --server-side -f https://raw.githubusercontent.com/VictoriaMetrics/operator/v0.33.0/config/crd/bases/operator.victoriametrics.com_vmalertmanagers.yaml --force-conflicts
@@ -85,6 +106,15 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/VictoriaMetrics
     ```
 
 ## insight-agent
+
+### Upgrade from v0.28.x (or lower) to v0.29.x
+
+Due to the upgrade of the Opentelemetry community operator chart version in v0.29.0, the supported values for `featureGates` in the values file have changed. Therefore, before upgrading, you need to set the value of `featureGates` to empty, as follows:
+
+```diff
+-  --set opentelemetry-operator.manager.featureGates="+operator.autoinstrumentation.go,+operator.autoinstrumentation.multi-instrumentation,+operator.autoinstrumentation.nginx" \
++  --set opentelemetry-operator.manager.featureGates=""
+```
 
 ### Upgrade from v0.23.x (or lower) to v0.24.x
 

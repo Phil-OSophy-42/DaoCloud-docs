@@ -9,7 +9,35 @@ hide:
 
 *[DCE]: DaoCloud Enterprise 云原生操作系统的简称，新一代 AI 智算平台
 
+## 2026 年
+
+- [DaoCloud 助力中国信通院制定大模型推理加速等国家标准](./2026/caict.md)
+
+    喜讯！DaoCloud 凭借在算力互联网及算力互联互通领域的突出贡献，荣获
+    **2025 年度算力互联网暨算力互联互通标准化建设突出贡献单位**
+
+- [OCI 正在悄悄「占领一切」](./2026/oci.md)
+
+    前阵子 KubeCon North America（亚特兰大那场）结束后，有篇文章总结得特别到位：OCI 正在悄悄地把各种东西都装进自己的体系。
+
+- [拓扑感知调度：为 AI 工作负载打造更智能的调度方案](./2026/topology-aware-scheduling.md)
+
+    在 KubeCon NA 2025 上，AI/ML 领域的讨论中有一个主题占据主导地位：
+    **拓扑（Topology）** 。每个人都在讨论拓扑感知调度，因为它对优化 AI 工作负载性能至关重要。
+
+- [Kubernetes x JobSet：协同演进如何让 AI 作业重启快 10 倍](./2026/jobset-ai-restart.md)
+
+    JobSet 利用 Kubernetes 原地容器重启实现 92% 的重启速度提升。
+
 ## 2025 年
+
+- [DaoCloud 首批通过 CNCF Kubernetes AI Conformance 认证](./2025/ai-conformance.md)
+
+    [DCE 5.0](https://docs.daocloud.io/) 首批通过 CNCF Kubernetes AI Conformance 认证。
+
+- [再登云原生之巅：Paco Xu 入选 Kubernetes 指导委员会](./2025/paco-ksc.md)
+
+    Paco Xu 再度成功入选 Kubernetes 指导委员会。
 
 - [聚焦 Kubernetes 指导委员会](./2025/k8s-steering-spotlight.md)
 
@@ -31,7 +59,7 @@ hide:
 - [20241219 | 重磅！DaoCloud 成功加入 K8s 安全响应委员会](2024/241219-sec-privacy.md)
 
     2024 年 12 月 19 日，在 Paco 和开源团队的不懈努力下，Daocloud 作为社区认可的 Kubernetes 发行商成功加入
-[Kubernetes 安全响应委员会](https://github.com/kubernetes/k8s.io/blob/main/groups/committee-security-response/groups.yaml)（committee-security-response）。
+    [Kubernetes 安全响应委员会](https://github.com/kubernetes/k8s.io/blob/main/groups/committee-security-response/groups.yaml)（committee-security-response）。
 
 - [20241108 | 从社区小白到 CNCF 大使](2024/241108-cncf-ambassador.md)
 

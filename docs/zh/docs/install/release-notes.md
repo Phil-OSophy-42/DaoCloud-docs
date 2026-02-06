@@ -10,6 +10,39 @@
 *[Skoala]: DCE 5.0 微服务引擎的开发代号
 *[Hydra]: DCE 5.0 大模型服务平台的开发代号
 
+## 2025-12-31
+
+### v0.37.0
+
+- **优化** 移除 Kubean 安装命令中的重复参数
+- **优化** Insight 调整 grafana-operator 的配置处理逻辑
+- **优化** Insight 升级 grafana-o中间件创建的幂等性校验逻辑 Insight 升级脚本问题
+- **修复** 中间件创建的幂等性校验逻辑问题
+- **修复** 中间件离线镜像仓库问题
+- **修复** 安装前置依赖时的 charts-syncer 版本校验逻辑问题
+
+## 2025-11-30
+
+### v0.36.0
+
+- **新增** 适配移动云 bclinux 21.10 系统
+- **修复** Insight 升级脚本问题
+- **修复** Insight 升级到 0.38.0，需关闭老版本的 jaeger 问题
+- **修复** Skoala AI 网关离线镜像问题
+- **修复** bcLinux 相关 repo url 版本号错误问题
+- **修复** Podman 5.x 版本火种集群 cgroup v2 兼容问题
+
+## 2025-10-31
+
+### v0.35.0
+
+- **新增** 安装器 v1.32 升级测试 e2e
+- **新增** cloud 模式 QA 测试
+- **优化** etcd 默认指标 URL 参数
+- **优化** Kubernetes 默认版本到 v1.32
+- **修复** Kubean manifest 模版渲染顺序异常导致 configmap 配置未生效问题
+- **修复** Skoala AI 网关离线镜像问题
+
 ## 2025-09-30
 
 ### v0.34.0
@@ -288,7 +321,7 @@
 
 #### 修复
 
-- **修复** 从低版本升级 gproduct 到 v0.16.0 时，由于 insight 组件脚本 bug，会导致升级失败的问题。
+- **修复** 从低版本升级 gproduct 到 v0.16.0 时，由于 Insight 组件脚本 bug，会导致升级失败的问题。
 
 ## 2024-03-31
 
@@ -312,7 +345,7 @@
 
 #### 已知问题
 
-- 从低版本升级 gproduct 到 v0.16.0 时，由于 insight 组件脚本 bug，会导致升级失败，绕行方案：升级时在 mainfest.yaml 文件中对 insight 组件临时禁用即可。
+- 从低版本升级 gproduct 到 v0.16.0 时，由于 Insight 组件脚本 bug，会导致升级失败，绕行方案：升级时在 mainfest.yaml 文件中对 Insight 组件临时禁用即可。
 
 ## 2024-03-01
 
@@ -581,7 +614,7 @@
 
 #### 新功能
 
-- **新增** Other Linux 模式支持操作系统 OpenAnolis 8.8 GA
+- **新增** 其他 Linux 模式支持操作系统 OpenAnolis 8.8 GA
 - **新增** 支持操作系统 OracleLinux R9 U1
 - **新增** 增加节点状态检测
 - **新增** 增加对系统包（OS PKG）的文件校验
@@ -593,7 +626,7 @@
 
 #### 优化
 
-- **优化** 部署 nacos 实例报镜像缺失
+- **优化** 部署 Nacos 实例报镜像缺失
 - **优化** 升级集群模块时，重复执行集群安装任务
 
 #### 已知问题
@@ -622,7 +655,7 @@
         ]
     ```
 
-- 版本升级时，insight-agent 存在问题，请参考 [insight 升级注意事项](../insight/quickstart/install/upgrade-note.md)
+- 版本升级时，insight-agent 存在问题，请参考 [Insight 升级注意事项](../insight/quickstart/install/upgrade-note.md)
 
 ## 2023-5-30
 
@@ -666,7 +699,7 @@
 
     ```yaml
     kubeanConfig: |-
-      calico_crds_download_url: "https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/calico-crds-v3.25.1.tar.gz"
+      calico_crds_download_url: "https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/calico-crds-v3.25.1.tar.gz"
     ```
 
     同时通过容器管理在线创建工作集群也有相同问题，需在集群创建页面高级配置的自定义参数中添加上述配置，键为
